@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<formModel>
+    <id>6737816b-f5d1-4705-aa2d-398247f74a03</id>
+    <createUser>admin</createUser>
+    <createTime>2019-07-24 09:10:54</createTime>
+    <updateUser></updateUser>
+    <updateTime>2019-07-24 09:21:10</updateTime>
+    <signature>tGOmxiTgjT/77UoYpSlq8Vc+hHPRoJWHdZexXc7zEpYuMNdhvSICeJnlc/RzRHGr1FNW8dJKsEfeuC3Ler2NscWdDiuy7Qr1XyV/KLMzkqJ5gOC3T2xNF+FQqybnvqI4</signature>
+    <managed>false</managed>
+    <title>信息发布</title>
+    <deleted>false</deleted>
+    <categoryName>信息发布</categoryName>
+    <administrator>admin</administrator>
+    <defaultLanguage></defaultLanguage>
+    <url></url>
+    <urlHeight></urlHeight>
+    <formItems>
+        <formItem>
+            <id>31310ccd-311b-4140-9422-426719d6535d</id>
+            <title>信息发布</title>
+            <templateFile>{"tablet":"信息发布.htm","pc":"信息发布-信息发布.htm","mobile":"信息发布-信息发布_m.htm"}</templateFile>
+            <grid>false</grid>
+            <gridSetting></gridSetting>
+            <orderBy></orderBy>
+            <pageLimit>0</pageLimit>
+            <boModelId>2a141ee9-f632-4324-bcca-ea5be6b9c69b</boModelId>
+            <dictionaryFileName></dictionaryFileName>
+            <hiddenHead>false</hiddenHead>
+            <theme>{"pc":"_bpm.platform","mobile":"_bpm.platform"}</theme>
+            <itemDisplays/>
+            <scheme>{"pc":"scheme_aws.css","mobile":""}</scheme>
+            <calcFormula></calcFormula>
+            <conditionControl></conditionControl>
+            <validate></validate>
+            <icon></icon>
+            <gridControl></gridControl>
+            <summaryControl></summaryControl>
+            <ruleControl></ruleControl>
+            <hiddenFields>,ISSUEDEPTID,ISSUESTATE,ISSUERANGEID</hiddenFields>
+            <hiddenAddBtn>false</hiddenAddBtn>
+            <verticalLayout>false</verticalLayout>
+        </formItem>
+    </formItems>
+</formModel>

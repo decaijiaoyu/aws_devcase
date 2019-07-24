@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<boModel>
+    <id>9107b799-071f-4db7-ab83-6e10a9aa047d</id>
+    <createUser>admin</createUser>
+    <createTime>2019-07-24 09:32:14</createTime>
+    <updateUser></updateUser>
+    <updateTime>2019-07-24 09:32:14</updateTime>
+    <signature>tGOmxiTgjT/77UoYpSlq8Vc+hHPRoJWHdZexXc7zEpYuMNdhvSICeJnlc/RzRHGr9YDmoFMxzLZs7tlJ/E8mktHqvB4hIetXosjG5bQCN56mLPP4cpa9SvPW2v44iQWZ</signature>
+    <managed>false</managed>
+    <title>浏览记录</title>
+    <name>BO_EU_INFO_HISTORY</name>
+    <collection>false</collection>
+    <system>false</system>
+    <deleted>false</deleted>
+    <categoryName>信息发布</categoryName>
+    <administrator>admin</administrator>
+    <entityType>TABLE</entityType>
+    <viewType></viewType>
+    <viewSql></viewSql>
+    <securityLevel>0</securityLevel>
+    <target>_local</target>
+    <itemProps></itemProps>
+    <boItems/>
+    <boIndexs/>
+    <boRelations/>
+</boModel>

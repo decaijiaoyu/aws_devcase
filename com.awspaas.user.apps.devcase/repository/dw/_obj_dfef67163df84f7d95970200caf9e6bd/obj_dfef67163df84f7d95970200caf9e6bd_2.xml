@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AWSDWModel>
+    <id>obj_dfef67163df84f7d95970200caf9e6bd</id>
+    <createUser>admin</createUser>
+    <createTime>2019-07-24 09:41:05</createTime>
+    <updateUser></updateUser>
+    <updateTime>2019-07-24 09:41:05</updateTime>
+    <signature>tGOmxiTgjT/77UoYpSlq8Vc+hHPRoJWHdZexXc7zEpYuMNdhvSICeJnlc/RzRHGrljmNyuToRAT6Nig4QKbhlQssP34sq1wQzYAcl9x1lD8ZKPZlzo0MH/EObuAulXem</signature>
+    <managed>false</managed>
+    <processGroupId>obj_dfef67163df84f7d95970200caf9e6bd</processGroupId>
+    <processGroupName>信息发布管理</processGroupName>
+    <categoryName>未分类</categoryName>
+    <dwType>1</dwType>
+    <processAdministrator></processAdministrator>
+    <title id="obj_41937e720a50402b945438e6533339d6" label="信息发布管理" extendcode="" event=""/>
+    <userextendbuttons/>
+    <userextendbehaviors/>
+</AWSDWModel>
