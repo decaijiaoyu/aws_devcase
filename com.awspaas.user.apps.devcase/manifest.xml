@@ -3,25 +3,25 @@
 <app xmlns="http://www.actionsoft.com.cn/app">  
   <name>AWS开发案例</name>  
   <version>1.0</version>  
-  <buildNo>1</buildNo>  
+  <buildNo>3</buildNo>  
   <developer id="00000000000000000000000000000000" tablePrefix="EU" url="http://www.awspaas.com">AWSPaaS-EndUser</developer>  
   <categoryVisible>true</categoryVisible>  
   <description><![CDATA[]]></description>  
   <details><![CDATA[]]></details>  
-  <installListener/>  
-  <pluginListener/>  
-  <startListener/>  
-  <stopListener/>  
-  <upgradeListener/>  
-  <uninstallListener/>  
+  <installListener></installListener>  
+  <pluginListener>com.awspaas.user.apps.devcase.Plugins</pluginListener>  
+  <startListener></startListener>  
+  <stopListener></stopListener>  
+  <upgradeListener></upgradeListener>  
+  <uninstallListener></uninstallListener>  
   <reloadable>true</reloadable>  
-  <requires> 
-    <require appId="" notActiveHandler=""/> 
-  </requires>  
+  <requires/>  
   <properties/>  
   <allowStartup>true</allowStartup>  
   <allowUpgradeByStore>true</allowUpgradeByStore>  
   <depend versions="6.2" env="">_bpm.portal</depend>  
-  <modelAdministrator/>  
-  <installDate>2019-07-24 08:08:26</installDate> 
+  <modelAdministrator></modelAdministrator>  
+  <installDate>2019-07-24 14:52:48</installDate>  
+  <productId></productId>  
+  <releaseDate>2019-07-24</releaseDate> 
 </app>
