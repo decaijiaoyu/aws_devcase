@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<awsScheduleModel>
+    <id>a3aaceeb-b4b1-425e-823f-888768a1aa2e</id>
+    <createUser>admin</createUser>
+    <createTime>2019-07-26 11:46:47</createTime>
+    <updateUser></updateUser>
+    <updateTime>2019-07-26 14:20:50</updateTime>
+    <signature>tGOmxiTgjT/77UoYpSlq8Vc+hHPRoJWHdZexXc7zEpYuMNdhvSICeJnlc/RzRHGrrZzGXqyBCFqodYjO0C4SPdWa4G4hPm5o8DTtY66fR7Jl0pPSB6udb18AlBDckddU</signature>
+    <managed>false</managed>
+    <name>清除临时账号</name>
+    <group>DEFAULT</group>
+    <desc></desc>
+    <disabled>false</disabled>
+    <system>false</system>
+    <classz>com.awspaas.user.apps.devcase.tempUser.job.AutoRemoveTempUser</classz>
+    <createDate>2019-07-26T11:46:47+08:00</createDate>
+    <triggerRule>6::0</triggerRule>
+    <userParam></userParam>
+    <lastToken></lastToken>
+    <concurrent>false</concurrent>
+    <categoryName>未分类</categoryName>
+    <stateful>false</stateful>
+</awsScheduleModel>
