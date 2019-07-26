@@ -8,20 +8,22 @@
   <categoryVisible>true</categoryVisible>  
   <description><![CDATA[]]></description>  
   <details><![CDATA[]]></details>  
-  <installListener></installListener>  
+  <installListener/>  
   <pluginListener>com.awspaas.user.apps.devcase.Plugins</pluginListener>  
-  <startListener></startListener>  
-  <stopListener></stopListener>  
-  <upgradeListener></upgradeListener>  
-  <uninstallListener></uninstallListener>  
+  <startListener/>  
+  <stopListener/>  
+  <upgradeListener/>  
+  <uninstallListener/>  
   <reloadable>true</reloadable>  
   <requires/>  
-  <properties/>  
+  <properties> 
+    <property action="edit" group="临时用户" name="AwsDev" title="临时用户请求接口鉴权" type="textarea" isSystem="false" desc="临时用户请求接口鉴权" ref="">{"key":"AwsDev","ip":"172.16.9.15"}</property>
+  </properties>  
   <allowStartup>true</allowStartup>  
   <allowUpgradeByStore>true</allowUpgradeByStore>  
   <depend versions="6.2" env="">_bpm.portal</depend>  
-  <modelAdministrator></modelAdministrator>  
+  <modelAdministrator/>  
   <installDate>2019-07-24 14:52:48</installDate>  
-  <productId></productId>  
+  <productId/>  
   <releaseDate>2019-07-24</releaseDate> 
 </app>
