@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>临时用户申请表</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="renderer" content="webkit">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		[#AWSImport]
+		[#AWSUIImport]
+		<link rel='stylesheet' id='schemeCss' href='../apps/_bpm.platform/css/colorschemes/scheme_aws.css'  name='schemeCss'/>
+	
+<link type='text/css' rel='stylesheet' id='themeCss' href='../apps/_bpm.platform/css/theme/theme.css' name='themeCss'/>
+</head>
+	<body>
+<form id="frmMain" name="frmMain" method="post">
+<div id="aws-form-container" class="aws-form-ux-container" border="0" style="width: 50%;">
+<table id="aws-form-maintable" class="awsui-ux aws-form-ux-maintable" style="table-layout: auto;" align="center" border="0" cellpadding="0" cellspacing="0">
+<tbody>
+<tr id="aws-form-titlebg" class="aws-form-ux-titlebg">
+<td id="aws-form-title" class="aws-form-ux-header">临时用户申请表</td>
+</tr>
+<tr class="aws-form-ux-formcontent" id="aws-form-formcontent">
+<td>
+<table id="table_container" class="awsui-ux table-striped" style="padding: 0px;" width="100%" cellspacing="3" cellpadding="0"><colgroup><col class="awsui-ux-title" /><col style="width: 100.0%;" /></colgroup>
+<tbody>
+<tr>
+<td class="awsui-ux-title"><label for="FORMNO" class="aws-form-ux-label">单号</label></td>
+<td class="aws-form-ux-content">[#FORMNO]</td>
+</tr>
+<tr>
+<td class="awsui-ux-title"><label for="USERNAME" class="aws-form-ux-label">姓名</label></td>
+<td class="aws-form-ux-content">[#USERNAME]</td>
+</tr>
+<tr>
+<td class="awsui-ux-title"><label for="IDCARD" class="aws-form-ux-label">身份证号</label></td>
+<td class="aws-form-ux-content">[#IDCARD]</td>
+</tr>
+<tr>
+<td class="awsui-ux-title"><label for="DEPARTMENTNAME" class="aws-form-ux-label">部门</label></td>
+<td class="aws-form-ux-content">[#DEPARTMENTNAME]</td>
+</tr>
+<tr>
+<td class="awsui-ux-title"><label for="ROLENAME" class="aws-form-ux-label">角色</label></td>
+<td class="aws-form-ux-content">[#ROLENAME]</td>
+</tr>
+<tr>
+<td class="awsui-ux-title"><label for="TIMESIZE" class="aws-form-ux-label">申请使用时间</label></td>
+<td class="aws-form-ux-content">[#TIMESIZE]</td>
+</tr>
+<tr>
+<td class="awsui-ux-title"><label for="TIMEUNIT" class="aws-form-ux-label">时间单位</label></td>
+<td class="aws-form-ux-content">[#TIMEUNIT]</td>
+</tr>
+<tr id="c889111d_1570_0001_8a6a_b04025901097">
+<td class="awsui-ux-title"><label id="REASONLabel" class="aws-form-ux-label" for="REASON">申请原因</label></td>
+<td class="aws-form-ux-content">[#REASON]</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr class="aws-form-bottom">
+<td class="aws-form-ux-actionsoft">[#Actionsoft]
+<div id="hiddenArea" border="0" style="display: none;">[#DEPARTMENTID][#ROLEID][#LIMITTIME][#ISREMOVE][#ACTIVATETIME][#PREFIX][#UID]</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</form>
+<script id="formOnload">
+function formOnload() {
+    var isCreate = $("#isCreate").val();
+    if (isCreate == "true") {
+        $("#ActionsoftHistoryOpinionList").hide();
+    }
+}
+</script>
+</body>
+</html>
