@@ -4,17 +4,18 @@ import com.actionsoft.bpms.bo.engine.BO;
 import com.actionsoft.bpms.bpmn.engine.core.delegate.ProcessExecutionContext;
 import com.actionsoft.bpms.bpmn.engine.listener.ExecuteListenerInterface;
 import com.actionsoft.sdk.local.SDK;
+import com.awspaas.user.apps.devcase.tempUser.service.CreateTempUser;
 import com.awspaas.user.apps.devcase.tempUser.service.CreateTempUserImpl;
 
 public class AfterSubmitApplyTempUser implements ExecuteListenerInterface {
 
-    private CreateTempUserImpl createTempUserImpl = new CreateTempUserImpl();
+    private CreateTempUser createTempUser = new CreateTempUserImpl();
 
     @Override
     public void execute(ProcessExecutionContext processExecutionContext) throws Exception {
         BO tempUserBo = processExecutionContext.getBO("BO_EU_TEMPUSER");
         tempUserBo.set("FORMSTATUS","待审核");
-        tempUserBo.set("FORMNO",createTempUserImpl.createFormNo(tempUserBo.getString("PREFIX")));
+        tempUserBo.set("FORMNO",createTempUser.createFormNo(tempUserBo.getString("PREFIX")));
         SDK.getBOAPI().update("BO_EU_TEMPUSER",tempUserBo);
     }
 

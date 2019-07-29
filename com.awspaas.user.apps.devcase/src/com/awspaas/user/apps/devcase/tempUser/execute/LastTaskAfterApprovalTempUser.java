@@ -4,6 +4,7 @@ import com.actionsoft.bpms.bo.engine.BO;
 import com.actionsoft.bpms.bpmn.engine.core.delegate.ProcessExecutionContext;
 import com.actionsoft.bpms.bpmn.engine.listener.ExecuteListenerInterface;
 import com.actionsoft.sdk.local.SDK;
+import com.awspaas.user.apps.devcase.tempUser.service.CreateTempUser;
 import com.awspaas.user.apps.devcase.tempUser.service.CreateTempUserImpl;
 
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.Date;
 
 public class LastTaskAfterApprovalTempUser implements ExecuteListenerInterface {
 
-    private CreateTempUserImpl createTempUserImpl = new CreateTempUserImpl();
+    private CreateTempUser createTempUser = new CreateTempUserImpl();
 
     @Override
     public void execute(ProcessExecutionContext processExecutionContext) throws Exception {
@@ -32,8 +33,8 @@ public class LastTaskAfterApprovalTempUser implements ExecuteListenerInterface {
             // 申请人身份证号
             String idCard = applyTempUser.getString("IDCARD");
             // 生成临时账号密码
-            String userId = applyTempUser.getString("PREFIX") + createTempUserImpl.createTempUserId();
-            String password = createTempUserImpl.createTempUserPassword(idCard);
+            String userId = applyTempUser.getString("PREFIX") + createTempUser.createTempUserId();
+            String password = createTempUser.createTempUserPassword(idCard);
             // 是否部门主管
             boolean isManager = applyTempUser.get("ISMANAGER") != null && applyTempUser.getString("ISMANAGER").equals("1");
             // 生成账号 成功返回1，失败返回0

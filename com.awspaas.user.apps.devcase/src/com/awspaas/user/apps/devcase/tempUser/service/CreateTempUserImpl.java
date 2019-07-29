@@ -6,13 +6,11 @@ import com.actionsoft.bpms.commons.mvc.view.ResponseObject;
 import com.actionsoft.bpms.server.UserContext;
 import com.actionsoft.bpms.util.DBSql;
 import com.actionsoft.sdk.local.SDK;
-import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Map;
 
-@Service
 public class CreateTempUserImpl implements CreateTempUser {
 
     @Override
@@ -85,26 +83,33 @@ public class CreateTempUserImpl implements CreateTempUser {
             String reason = map.get("REASON").toString();
             String time = map.get("TIME").toString();
             String unit = map.get("UNIT").toString();
-            BO tempUserBo = new BO();
 
+            String formNo = this.createProcessDetail(userName,idCard,reason,time,unit);
 
-            tempUserBo.set("USERNAME", userName);
-            tempUserBo.set("IDCARD", idCard);
-            tempUserBo.set("REASON", reason);
-            tempUserBo.set("TIMESIZE", time);
-            tempUserBo.set("TIMEUNIT", unit);
-            String formNo = this.createFormNo("EX");
-            tempUserBo.set("FORMNO", formNo);
-
-            ProcessInstance processInstance = SDK.getProcessAPI().createProcessInstance("obj_6ae25b5bcb734d678bc14b5a0c9d0327", "admin", userName + "申请临时账号");
-            SDK.getBOAPI().create("BO_EU_TEMPUSER", tempUserBo, processInstance, UserContext.fromUID("admin"));
-            SDK.getProcessAPI().start(processInstance);
-            SDK.getTaskAPI().completeTask(processInstance.getStartTaskInstId(), "admin");
             responseObject.put("FORMNO", formNo);
         } catch (Exception e) {
             e.printStackTrace();
             responseObject = ResponseObject.newErrResponse(e.getMessage());
         }
         return responseObject;
+    }
+
+    private String createProcessDetail(String userName,String idCard,String reason,String time,String unit) throws Exception{
+        BO tempUserBo = new BO();
+
+        tempUserBo.set("USERNAME", userName);
+        tempUserBo.set("IDCARD", idCard);
+        tempUserBo.set("REASON", reason);
+        tempUserBo.set("TIMESIZE", time);
+        tempUserBo.set("TIMEUNIT", unit);
+        String formNo = this.createFormNo("EX");
+        tempUserBo.set("FORMNO", formNo);
+
+        ProcessInstance processInstance = SDK.getProcessAPI().createProcessInstance("obj_6ae25b5bcb734d678bc14b5a0c9d0327", "admin", userName + "申请临时账号");
+        SDK.getBOAPI().create("BO_EU_TEMPUSER", tempUserBo, processInstance, UserContext.fromUID("admin"));
+        SDK.getProcessAPI().start(processInstance);
+        SDK.getTaskAPI().completeTask(processInstance.getStartTaskInstId(), "admin");
+
+        return formNo;
     }
 }
