@@ -17,8 +17,8 @@
   <reloadable>true</reloadable>  
   <requires/>  
   <properties> 
-    <property action="edit" group="临时用户" name="AwsDev" title="临时用户请求接口鉴权" type="textarea" isSystem="false" desc="临时用户请求接口鉴权" ref="">{"key":"AwsDev","ip":"172.16.9.15"}</property>
-    <property action="edit" group="系统参数" name="localhost" title="服务器ip" type="input" isSystem="false" desc="" ref="">http://localhost:8088/portal</property>
+    <property action="edit" group="临时用户" name="AwsDev" title="临时用户请求接口鉴权" type="textarea" isSystem="false" desc="临时用户请求接口鉴权" ref="">{"key":"AwsDev","ip":"localhost"}</property>
+    <property action="edit" group="系统参数" name="localhost" title="服务器ip" type="input" isSystem="false" desc="" ref="">localhost:8088/portal</property>
   </properties>  
   <allowStartup>true</allowStartup>  
   <allowUpgradeByStore>true</allowUpgradeByStore>  
