@@ -5,7 +5,7 @@ import com.actionsoft.bpms.bpmn.engine.model.run.delegate.ProcessInstance;
 import com.actionsoft.bpms.commons.mvc.view.ResponseObject;
 import com.actionsoft.bpms.server.UserContext;
 import com.actionsoft.sdk.local.SDK;
-import com.awspaas.user.apps.devcase.tempUser.util.Util;
+import com.awspaas.user.apps.devcase.util.WebPage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +13,6 @@ import java.util.Map;
 public class OutCreateTempUserImpl implements OutCreateTempUser {
 
     private CreateTempUser createTempUser = new CreateTempUserImpl();
-
-    private Util util = new Util();
 
     @Override
     public String getTempUserApplyUrl(String ip) {
@@ -31,7 +29,7 @@ public class OutCreateTempUserImpl implements OutCreateTempUser {
         bo.set("ISUSED", "0");
         bo.set("ACTIVATETIME", time_long);
         SDK.getBOAPI().createDataBO("BO_EU_YH_SID", bo, UserContext.fromUID("admin"));
-        return local_ip + "/r/jd?cmd=com.awspaas.user.apps.devcase_AWS_API_OPENATUFORM&yhsid=" + bo.getId();
+        return local_ip + "/r/w?cmd=com.awspaas.user.apps.devcase_AWS_API_OPENATUFORM&yhsid=" + bo.getId();
     }
 
     @Override
@@ -42,20 +40,20 @@ public class OutCreateTempUserImpl implements OutCreateTempUser {
         if (bo == null) {
             // url链接错误
             map.put("errorInfo", "");
-            return util.getPage(AppId, "ErrorPage.html", map);
+            return WebPage.getPage(AppId, "ErrorPage.html", map);
         } else {
             if (bo.get("IP") == null || !bo.getString("IP").equals(ip)) {
                 // 异常访问
                 map.put("errorInfo", "异常访问");
-                return util.getPage(AppId, "ErrorPage.html", map);
+                return WebPage.getPage(AppId, "ErrorPage.html", map);
             } else if (bo.getString("ISUSED").equals("1")) {
                 // 已失效
                 map.put("errorInfo", "该链接已失效");
-                return util.getPage(AppId, "ErrorPage.html", map);
+                return WebPage.getPage(AppId, "ErrorPage.html", map);
             } else if (bo.getString("ISCLOSED").equals("1")) {
                 // 已过期
                 map.put("errorInfo", "该链接已过期");
-                return util.getPage(AppId, "ErrorPage.html", map);
+                return WebPage.getPage(AppId, "ErrorPage.html", map);
             }
 
             long now_long = System.currentTimeMillis();
@@ -68,11 +66,11 @@ public class OutCreateTempUserImpl implements OutCreateTempUser {
                 map.put("errorInfo", "该链接已过期");
                 bo.set("ISCLOSED", "1");
                 SDK.getBOAPI().update("BO_EU_YH_SID", bo);
-                return util.getPage(AppId, "ErrorPage.html", map);
+                return WebPage.getPage(AppId, "ErrorPage.html", map);
             }
 
             map.put("yhsid", yhsid);
-            return util.getPage(AppId, "out-tempUserForm.html", map);
+            return WebPage.getPage(AppId, "out-tempUserForm.html", map);
         }
     }
 
