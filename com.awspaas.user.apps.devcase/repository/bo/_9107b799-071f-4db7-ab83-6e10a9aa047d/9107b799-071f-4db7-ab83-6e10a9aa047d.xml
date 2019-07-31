@@ -4,7 +4,7 @@
     <createUser>admin</createUser>
     <createTime>2019-07-24 09:32:14</createTime>
     <updateUser></updateUser>
-    <updateTime>2019-07-24 09:34:06</updateTime>
+    <updateTime>2019-07-30 15:20:32</updateTime>
     <signature>tGOmxiTgjT/77UoYpSlq8Vc+hHPRoJWHdZexXc7zEpYuMNdhvSICeJnlc/RzRHGr9YDmoFMxzLZs7tlJ/E8mktHqvB4hIetXosjG5bQCN56mLPP4cpa9SvPW2v44iQWZ</signature>
     <managed>false</managed>
     <title>浏览记录</title>
@@ -87,6 +87,84 @@
             <display>true</display>
             <deleted>false</deleted>
             <modify>true</modify>
+            <componentExtendCode></componentExtendCode>
+            <persistenceType>ENTITY</persistenceType>
+            <validateType></validateType>
+            <validateRule></validateRule>
+            <validateTip></validateTip>
+            <validateErr>0</validateErr>
+            <tooltip></tooltip>
+            <copy>false</copy>
+            <displayRule></displayRule>
+            <calcFormula></calcFormula>
+            <propsVal>{}</propsVal>
+        </boItem>
+        <boItem>
+            <id>a89e8300-8815-45e9-8139-b320ba7299d4</id>
+            <name>INFOID</name>
+            <title>信息ID</title>
+            <columnType>TEXT</columnType>
+            <length>128</length>
+            <nullable>true</nullable>
+            <defaultValue></defaultValue>
+            <columnWidth>100</columnWidth>
+            <componentId>AWSUI.Text</componentId>
+            <componentSetting>{"search":"0"}</componentSetting>
+            <display>true</display>
+            <deleted>false</deleted>
+            <modify>true</modify>
+            <componentExtendCode></componentExtendCode>
+            <persistenceType>ENTITY</persistenceType>
+            <validateType></validateType>
+            <validateRule></validateRule>
+            <validateTip></validateTip>
+            <validateErr>0</validateErr>
+            <tooltip></tooltip>
+            <copy>false</copy>
+            <displayRule></displayRule>
+            <calcFormula></calcFormula>
+            <propsVal>{}</propsVal>
+        </boItem>
+        <boItem>
+            <id>7019685b-0422-474e-a047-b14965f14271</id>
+            <name>LASTBROWSETIME</name>
+            <title>最后一次浏览时间</title>
+            <columnType>TEXT</columnType>
+            <length>128</length>
+            <nullable>true</nullable>
+            <defaultValue></defaultValue>
+            <columnWidth>100</columnWidth>
+            <componentId>AWSUI.Text</componentId>
+            <componentSetting>{"search":"0"}</componentSetting>
+            <display>true</display>
+            <deleted>false</deleted>
+            <modify>false</modify>
+            <componentExtendCode></componentExtendCode>
+            <persistenceType>ENTITY</persistenceType>
+            <validateType></validateType>
+            <validateRule></validateRule>
+            <validateTip></validateTip>
+            <validateErr>0</validateErr>
+            <tooltip></tooltip>
+            <copy>false</copy>
+            <displayRule></displayRule>
+            <calcFormula></calcFormula>
+            <propsVal>{}</propsVal>
+        </boItem>
+        <boItem>
+            <id>f2cddf4e-6694-46c1-b4d5-1c8b15a0d00c</id>
+            <name>TIMES</name>
+            <title>浏览次数</title>
+            <columnType>TEXT</columnType>
+            <length>128</length>
+            <nullable>true</nullable>
+            <defaultValue></defaultValue>
+            <columnWidth>100</columnWidth>
+            <componentId>AWSUI.Text</componentId>
+            <componentSetting>{"search":"0"}</componentSetting>
+            <display>true</display>
+            <deleted>false</deleted>
+            <modify>false</modify>
             <componentExtendCode></componentExtendCode>
             <persistenceType>ENTITY</persistenceType>
             <validateType></validateType>
