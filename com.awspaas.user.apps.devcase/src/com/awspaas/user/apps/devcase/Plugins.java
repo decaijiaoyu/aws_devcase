@@ -28,6 +28,9 @@ public class Plugins implements PluginListener {
         // 信息发布接口
         list.add(new ASLPPluginProfile("applyNotice", AslpCreateNoticeProcess.class.getName(),"信息发布",new HttpASLP(HttpASLP.AUTH_KEY,"AwsDev")));
 
+        // @公式
+        list.add(new AtFormulaPluginProfile("组织","@getDeptIdsByCompId(*companyId)",
+                getDepartIdsByCompId.class.getName(),"获取公司的所有部门ID","获取公司的所有部门ID"));
         return list;
     }
 }
