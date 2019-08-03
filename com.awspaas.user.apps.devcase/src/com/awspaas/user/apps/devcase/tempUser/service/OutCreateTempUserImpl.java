@@ -17,7 +17,7 @@ public class OutCreateTempUserImpl implements OutCreateTempUser {
     @Override
     public String getTempUserApplyUrl(String ip) {
         // 生成临时账号申请链接
-        // 获取当前时间戳
+        // 获取当前系统时间
         long time_long = System.currentTimeMillis();
         BO bo = new BO();
 
@@ -69,9 +69,9 @@ public class OutCreateTempUserImpl implements OutCreateTempUser {
                 return WebPage.getPage(AppId, "ErrorPage.html", map);
             }
 
-            // 获取当前时间戳
+            // 获取当前系统时间
             long now_long = System.currentTimeMillis();
-            // 获取激活时间戳
+            // 获取激活系统系统
             String activate_String = bo.get("ACTIVATETIME") == null ? "" : bo.getString("ACTIVATETIME");
             activate_String = activate_String.equals("") ? "0" : activate_String;
             long activate_long = Long.parseLong(activate_String);
