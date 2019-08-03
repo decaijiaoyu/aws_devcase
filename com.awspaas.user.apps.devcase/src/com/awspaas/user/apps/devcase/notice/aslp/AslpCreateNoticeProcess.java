@@ -11,6 +11,11 @@ public class AslpCreateNoticeProcess implements ASLP {
 
     private NoticeService noticeService = new NoticeServiceImpl();
 
+    /**
+     * 接口调用
+     * @param map
+     * @return
+     */
     @Override
     public ResponseObject call(Map<String, Object> map) {
         return noticeService.createNoticeProcess(map);

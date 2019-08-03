@@ -28,17 +28,19 @@ import java.util.List;
 import java.util.Map;
 
 public class NoticeServiceImpl implements NoticeService {
+
     @Override
     public ResponseObject createOrUpdateBRecords(UserContext userContext, String ids_String) {
+        // 创建或新增浏览记录
         ResponseObject responseObject;
         try {
             responseObject = ResponseObject.newOkResponse();
             String[] ids = ids_String.split(",");
             String uid = userContext.getUID();
-            String usernmae = userContext.getUserName();
+            String userName = userContext.getUserName();
             String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
             BOAPI boapi = SDK.getBOAPI();
-            // 个人浏览记录
+            // 个人浏览记录-新增浏览记录或更新浏览次数
             for (String id : ids) {
                 List<BO> bos = boapi
                         .query("bo_eu_info_history")
@@ -58,14 +60,14 @@ public class NoticeServiceImpl implements NoticeService {
                     boapi.update("bo_eu_info_history", bo);
                 } else {
                     BO bo = new BO();
-                    bo.set("CHECKUSERNAME", usernmae);
+                    bo.set("CHECKUSERNAME", userName);
                     bo.set("CHECKUSERID", uid);
                     bo.set("INFOID", id);
                     bo.set("LASTBROWSETIME", time);
                     bo.set("TIMES", times + 1);
                     boapi.createDataBO("bo_eu_info_history", bo, userContext);
                 }
-                // 通知公告记录
+                // 通知公告记录 浏览次数+1
                 BO main_bo = boapi.get("bo_eu_info", id);
                 if (main_bo.get("TIMES") != null && !main_bo.getString("TIMES").equals("")) {
                     times = Integer.parseInt(main_bo.getString("TIMES"));
@@ -85,6 +87,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public ResponseObject releaseNotice(UserContext userContext, String ids) {
+        // 公告发布
         ResponseObject responseObject;
         try {
             responseObject = ResponseObject.newOkResponse();
@@ -104,6 +107,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public ResponseObject closeNotice(UserContext userContext, String ids) {
+        // 公告关闭
         ResponseObject responseObject;
         try {
             responseObject = ResponseObject.newOkResponse();
@@ -123,6 +127,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public ResponseObject createNoticeProcess(Map<String, Object> map) {
+        // 创建公告流程
         ResponseObject responseObject;
         try {
             responseObject = ResponseObject.newOkResponse();
@@ -131,6 +136,7 @@ public class NoticeServiceImpl implements NoticeService {
                     map.get("type") != null &&
                     map.get("title") != null &&
                     (map.get("content") != null || map.get("dFix") != null)) {
+                // 传入数据不为空时，创建流程
                 BO bo = new BO();
                 String uid = map.get("uid").toString();// 用户id
                 String dranges = map.get("drange").toString();// 发布范围
@@ -145,6 +151,7 @@ public class NoticeServiceImpl implements NoticeService {
                 bo.set("ISSUETYPE", type);
                 bo.set("TITLE", title);
 
+                // 部门ID处理
                 String[] drangeids = dranges.split(",");
                 String dids = "";
                 String dnames = "";
@@ -162,36 +169,48 @@ public class NoticeServiceImpl implements NoticeService {
                     dnames = dnames.substring(0, dnames.length() - 1);
                 }
 
-                bo.set("ISSUEDRANGE", dnames);
-                bo.set("ISSUERANGEID", dids);
+                bo.set("ISSUEDRANGE", dnames);// 发布范围部门
+                bo.set("ISSUERANGEID", dids);// 发布范围部门ID
 
+                // 创建流程
                 ProcessInstance processInstance = SDK.getProcessAPI().createProcessInstance("obj_e026881d92c24decaa1f16ea9fcd29b7", uid, userModel.getUserName() + "发布的信息");
 
                 if (map.get("content") != null) {
+                    // 写入内容
                     String content = map.get("content").toString();
                     bo.set("CONTENT", content);
                 }
                 if (map.get("dFix") != null) {
+                    // 创建数据
                     SDK.getBOAPI().create("bo_eu_info", bo, processInstance, UserContext.fromUID(uid));
+                    // 开始流程任务
                     SDK.getProcessAPI().start(processInstance);
+                    // 获取新建的数据
                     bo = SDK.getBOAPI().getByKeyField("bo_eu_info", "BINDID", processInstance.getId());
+                    // 拼接文件存放路径
                     String localPath = new File("").getCanonicalPath().replace(File.separator + "bin", "") + File.separator +
                             "tempFile" + File.separator +
                             "notice" + File.separator +
                             "aslp" + File.separator +
                             processInstance.getId() + File.separator;
 
+                    // 获取附件信息
                     String dFix = map.get("dFix").toString();
+                    // 格式转换为json数组
                     JSONArray jsonArray = JSONArray.fromObject(dFix);
 
                     DownloadFile downloadFile = DownloadFile.getInstance();
                     for (int json_i = 0; json_i < jsonArray.size(); json_i++) {
+                        // 遍历获取附件信息
                         JSONObject jsonObject = jsonArray.getJSONObject(json_i);
                         if (jsonObject.get("url") != null && (jsonObject.get("url").toString().length() > 0)
                                 && jsonObject.get("fileName") != null && (jsonObject.get("fileName").toString().length() > 0)) {
+                            // 附件下载连接和文件名不为空时，数据处理
                             String url = jsonObject.get("url").toString();
                             String fileName = jsonObject.get("fileName").toString();
+                            // 先下载文件
                             File file = downloadFile.downloadNet(url, fileName, localPath);
+                            // 使用平台的附件存储数据处理类
                             FormFileModel formFileModel = new FormFileModel();
                             formFileModel.setAppId("com.awspaas.user.apps.devcase");
                             formFileModel.setBoId(bo.getId());
@@ -204,8 +223,10 @@ public class NoticeServiceImpl implements NoticeService {
                             formFileModel.setProcessInstId(processInstance.getId());
                             formFileModel.setTaskInstId(processInstance.getStartTaskInstId());
                             formFileModel.setRemark("请求接口上传的文件");
+                            // 获取输入数据流
                             InputStream inputStream = new FileInputStream(file);
                             try {
+                                // 上传文件到新建的数据
                                 SDK.getBOAPI().upFile(formFileModel, inputStream);
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -215,6 +236,7 @@ public class NoticeServiceImpl implements NoticeService {
                         }
                     }
                 }
+                // 第一节点自动完成提交
                 SDK.getTaskAPI().completeTask(processInstance.getStartTaskInstId(), uid);
                 responseObject.msg("信息发布流程成功启动");
             } else {
@@ -227,6 +249,12 @@ public class NoticeServiceImpl implements NoticeService {
         return responseObject;
     }
 
+    /**
+     * 公告预览
+     * @param userContext
+     * @param id
+     * @return
+     */
     @Override
     public String browseNotice(UserContext userContext, String id) {
         String AppId = "com.awspaas.user.apps.devcase";
@@ -237,6 +265,7 @@ public class NoticeServiceImpl implements NoticeService {
             BO bo = SDK.getBOAPI().query("bo_eu_info", true).detailById(id);
             map.put("title", bo.get("TITLE"));
             map.put("content", bo.get("CONTENT"));
+            // 获取附件信息
             List<FormFile> formFiles = SDK.getBOAPI().getFiles(id, "FILE");
             String files = "<table class='awsui-table awsui-table-hover'>" +
                     "<thead>" +
@@ -267,6 +296,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public String getOptionLogNotice(UserContext userContext, String id) {
+        // 获取公告操作记录
         String AppId = "com.awspaas.user.apps.devcase";
         Map<String, Object> map = new HashMap<String, Object>();
         try {
@@ -307,6 +337,7 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public String getBrowseRecords(UserContext userContext, String id) {
+        // 获取浏览记录
         String AppId = "com.awspaas.user.apps.devcase";
         Map<String, Object> map = new HashMap<String, Object>();
         try {
@@ -345,28 +376,11 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     private void createOptionLog(UserContext userContext, String id, String option) throws Exception {
+        // 创建操作记录信息
         BO bo = new BO();
         bo.set("NOTICEID", id);
         bo.set("NOTICEOPTION", option);
         SDK.getBOAPI().createDataBO("bo_eu_info_oplog", bo, userContext);
     }
 
-    public static void main(String[] args) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("uid", "admin");
-        map.put("drange", "评估试用版");
-        map.put("type", "通知");
-        map.put("title", "text");
-        JSONArray jsonArray = new JSONArray();
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("url", "http://hbimg.b0.upaiyun.com/0b0a64f995cbdeb4428f761d0f1aa6bd97c288d3912b-OcHDCs_fw658");
-        jsonObject.put("fileName", "图片1.png");
-        jsonArray.add(jsonObject);
-        jsonObject.put("url", "http://hbimg.b0.upaiyun.com/0b0a64f995cbdeb4428f761d0f1aa6bd97c288d3912b-OcHDCs_fw658");
-        jsonObject.put("fileName", "图片2.png");
-        jsonArray.add(jsonObject);
-        map.put("dFix", jsonArray);
-        NoticeServiceImpl noticeService = new NoticeServiceImpl();
-        noticeService.createNoticeProcess(map);
-    }
 }

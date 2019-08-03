@@ -6,6 +6,9 @@ import com.actionsoft.bpms.server.UserContext;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * 数据窗口数据格式化，增加onclick事件
+ */
 public class NoticeGridDataFormat implements DataWindowFormatDataEventInterface {
 
     @Override

@@ -5,6 +5,9 @@ import com.actionsoft.bpms.bpmn.engine.core.delegate.ProcessExecutionContext;
 import com.actionsoft.bpms.bpmn.engine.listener.ExecuteListenerInterface;
 import com.actionsoft.sdk.local.SDK;
 
+/**
+ * 公告审批，修改数据状态
+ */
 public class LastTaskAfterApprovalNotice implements ExecuteListenerInterface {
     @Override
     public void execute(ProcessExecutionContext processExecutionContext) throws Exception {

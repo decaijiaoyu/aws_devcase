@@ -4,6 +4,11 @@ import com.actionsoft.bpms.bo.engine.BO;
 import com.actionsoft.bpms.bpmn.engine.core.delegate.ProcessExecutionContext;
 import com.actionsoft.bpms.bpmn.engine.listener.ExecuteListenerInterface;
 
+
+/**
+ * 表单保存后事件
+ * 暂未使用
+ */
 public class AfterSaveNoticeForm implements ExecuteListenerInterface {
     @Override
     public void execute(ProcessExecutionContext processExecutionContext) throws Exception {
