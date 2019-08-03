@@ -18,6 +18,7 @@ public class AutoRemoveTempUser implements IJob {
         List<BO> tempUser_list = SDK.getBOAPI().query("BO_EU_TEMPUSER").addQuery("ISREMOVE=","0").addQuery("ACTIVATETIME IS NOT NULL",null).list();
         // 获取当前时间
         long nowDate = Calendar.getInstance().getTimeInMillis();
+        // 一个月的时间戳长度
         long month = Long.parseLong(String.valueOf(3*24*6*6)+"000000");
         // 日期格式化
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -31,8 +32,10 @@ public class AutoRemoveTempUser implements IJob {
                 long limitTime = Long.parseLong(tempUser.getString("LIMITTIME"));
                 if (nowDate - createDate > limitTime + month) {
                     if(nowDate - createDate > limitTime && nowDate - createDate < limitTime+ month){
+                        // 对超过期限一个月以内的临时账号，进行关闭
                         SDK.getORGAPI().disabledUser(tempUser.getString("UID"));
                     }else {
+                        // 对超过期限一个月后的临时账号，进行删除
                         SDK.getORGAPI().removeUser(tempUser.getString("UID"));
                         tempUser.set("ISREMOVE", "1");
                     }

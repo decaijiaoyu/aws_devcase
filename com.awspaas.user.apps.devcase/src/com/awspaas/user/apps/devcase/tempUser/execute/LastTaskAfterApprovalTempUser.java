@@ -16,6 +16,7 @@ public class LastTaskAfterApprovalTempUser implements ExecuteListenerInterface {
 
     @Override
     public void execute(ProcessExecutionContext processExecutionContext) throws Exception {
+        // 审批通过后生成临时账号
         BO applyTempUser = processExecutionContext.getBO("BO_EU_TEMPUSER");
         boolean isAgree = processExecutionContext.isChoiceActionMenu("同意");
         if(isAgree){

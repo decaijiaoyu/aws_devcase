@@ -11,6 +11,7 @@ import java.util.List;
 public class AutoCloseYhSid implements IJob {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+        // 定时关闭过期的临时账号申请链接
         List<BO>  yhsid_bos = SDK.getBOAPI()
                 .query("bo_eu_yh_sid")
                 .addQuery("ISCLOSED = ","")
@@ -25,9 +26,7 @@ public class AutoCloseYhSid implements IJob {
                     bo.set("ISCLOSED","1");
                     SDK.getBOAPI().update("bo_eu_yh_sid",bo);
                 }
-
             }
         }
-
     }
 }

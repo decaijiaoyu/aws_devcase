@@ -13,8 +13,10 @@ public class AfterSubmitApplyTempUser implements ExecuteListenerInterface {
 
     @Override
     public void execute(ProcessExecutionContext processExecutionContext) throws Exception {
+        // 修改单据状态
         BO tempUserBo = processExecutionContext.getBO("BO_EU_TEMPUSER");
         tempUserBo.set("FORMSTATUS","待审核");
+        // 生成临时账号申请单编号
         tempUserBo.set("FORMNO",createTempUser.createFormNo(tempUserBo.getString("PREFIX")));
         SDK.getBOAPI().update("BO_EU_TEMPUSER",tempUserBo);
     }
